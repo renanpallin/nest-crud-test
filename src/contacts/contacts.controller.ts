@@ -1,9 +1,14 @@
 import { Controller, Get } from '@nestjs/common';
+import { Contact } from './contact.entity';
+import { ContactsService } from './contacts.service';
+
 
 @Controller('contacts')
 export class ContactsController {
+    constructor(private contactsService: ContactsService) { }
+
     @Get()
-    index(): string {
-        return "this action will return contacts"
+    index(): Promise<Contact[]> {
+        return this.contactsService.findAll();
     }
 }
