@@ -12,19 +12,19 @@ export class ContactsController {
         return this.contactsService.findAll();
     }
 
-    @Post('create')
+    @Post()
     async create(@Body() contactData: Contact): Promise<any> {
         return this.contactsService.create(contactData);
     }
 
-    @Put(':id/update')
+    @Put(':id')
     async update(@Param('id') id, @Body() contactData: Contact): Promise<any> {
         contactData.id = Number(id);
         console.log('Update #' + contactData.id)
         return this.contactsService.update(contactData);
     }
 
-    @Delete(':id/delete')
+    @Delete(':id')
     async delete(@Param('id') id): Promise<any> {
         return this.contactsService.delete(id);
     }
